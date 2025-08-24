@@ -262,11 +262,10 @@ function ProductList({ onHomeClick }) {
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
         setAddedToCart((prevState) => (
-            {
-                ...prevState,
-                [product.name]: true,
-            }
-        ));
+        {
+            ...prevState,
+            [product.name]: true,
+        }));
     };
 
     return (
@@ -293,7 +292,7 @@ function ProductList({ onHomeClick }) {
                 <div className="product-grid">
                     {plantsArray.map((category, outerIndex) => (
                     <>
-                    <h2>--{category.category}--</h2> 
+                    <h2 className="plant_heading">{category.category}</h2> 
                     {category.plants && ( // Check if subItems exists and is an array
                         <div className="product-list">
                         {category.plants.map((plant, innerIndex) => (
