@@ -4,6 +4,7 @@ export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
     items: [], // Initialize items as an empty array
+    numItems: 0,
   },
   reducers: {
     addItem: (state, action) => {
@@ -17,9 +18,14 @@ export const CartSlice = createSlice({
         // If item does not exist, add it to the cart with quantity 1
         state.items.push({ name, image, cost, quantity: 1 });
       }
+      state.numItems++;
     },
     removeItem: (state, action) => {
       state.items = state.items.filter(item => item.name !== action.payload);
+      state.numItems--;
+      if (state.numItems < 0) {
+        state.numItems = 0;
+      }
     },
     updateQuantity: (state, action) => {
       const { name, quanity } = action.payload;
